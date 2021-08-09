@@ -1,5 +1,44 @@
+<script lang="ts">
+import { defineComponent, computed, PropType } from "vue";
+import { CarouselAboutData } from "@/store/app.config";
+import { DispatchType, ModalId } from "@/store/app.config";
+
+export default defineComponent({
+  name: "PageModal",
+  props: {
+    carouselData: {
+      type: Object as PropType<CarouselAboutData[]>,
+      required: true
+    }
+  },
+  setup(props) {
+    const cData = computed(() => props.carouselData);
+    /**
+     * モーダル
+     */
+    const onCloseModal = () => {
+      console.log(">>onCloseModal");
+    };
+
+    return {
+      cData,
+      onCloseModal
+    };
+  },
+});
+</script>
+
 <template>
-  <div class="app-footer">
-    <h1>This is an AppFooter page</h1>
-  </div>
+  <teleport to="#modal">
+    <div class="Modal">
+      <div class="Modal__image">
+        <img :src="cData[cIndex].srcL" :alt="cData[cIndex].alt" />
+      </div>
+      <button type="button" class="Modal__button" @click="onCloseModal()">
+        <span class="_ViseallyHidden">閉じる</span>
+        <span class="Modal__buttonBar -bar1"></span>
+        <span class="Modal__buttonBar -bar2"></span>
+      </button>
+    </div>
+  </teleport>
 </template>

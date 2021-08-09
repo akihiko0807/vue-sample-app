@@ -7,3 +7,12 @@ export interface BnrData {
   href: string;
   alt: string;
 }
+/**
+ * MVデータ
+ */
+export interface HeroData {
+  page: string;
+  headingHtml: string;
+  descHtml: string;
+  cls: string;
+}
