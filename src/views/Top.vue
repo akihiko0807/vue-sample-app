@@ -1,13 +1,24 @@
 <script lang="ts">
 import { defineComponent } from "vue";
+import NewsTab from "@/components/pages/newsTab.vue";
+import { AppData } from "@/store/app.data";
 
 export default defineComponent({
   name: "top",
+  data() {
+    return {
+      newsData: AppData.newsDataList
+    };
+  },
+  components: {
+    NewsTab
+  },
 });
 </script>
 
 <template>
-  <div class="top">
-    <h1>This is an top page</h1>
+  <div class="News">
+    <h2 class="News__heading">News</h2>
+    <NewsTab :newsData="newsData" />
   </div>
 </template>
